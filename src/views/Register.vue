@@ -12,9 +12,9 @@
 						        	    </span>
 						        	    <a-input
 						        	      v-decorator="[
-						        	        'nickname',
+						        	        'username',
 						        	        {
-						        	          rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+						        	          rules: [{ required: true, message: '请输入您要注册的用户名!', whitespace: true }],
 						        	        },
 						        	      ]"
 						        	    />
@@ -27,11 +27,11 @@
 						                  rules: [
 						                    {
 						                      type: 'email',
-						                      message: 'The input is not valid E-mail!',
+						                      message: '您输入的并不是电子邮箱正确格式!',
 						                    },
 						                    {
 						                      required: true,
-						                      message: 'Please input your E-mail!',
+						                      message: '请输入你的电子邮箱!',
 						                    },
 						                  ],
 						                },
@@ -46,7 +46,7 @@
 						                  rules: [
 						                    {
 						                      required: true,
-						                      message: 'Please input your password!',
+						                      message: '请输入您要设置的密码!',
 						                    },
 						                    {
 						                      validator: validateToNextPassword,
@@ -65,7 +65,7 @@
 						                  rules: [
 						                    {
 						                      required: true,
-						                      message: 'Please confirm your password!',
+						                      message: '请确认您的密码!',
 						                    },
 						                    {
 						                      validator: compareToFirstPassword,
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-
+import { loginApi ,editAdminListApi } from "@/api/user.js";
 export default {
   data() {
     return {
@@ -116,7 +116,8 @@ export default {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+			console.log('Received values of form: ', values);
+			loginApi(values).then(res=>{console.log("返回信息",res)}).catch(info=>{console.log("异常信息",info)})
         }
       });
     },
@@ -127,7 +128,7 @@ export default {
     compareToFirstPassword(rule, value, callback) {
       const form = this.form;
       if (value && value !== form.getFieldValue('password')) {
-        callback('Two passwords that you enter is inconsistent!');
+        callback('您输入的两个密码不一致!');
       } else {
         callback();
       }

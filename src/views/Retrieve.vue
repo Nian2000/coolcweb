@@ -12,7 +12,7 @@
 							v-decorator="[
 								'username',
 								{
-									rules: [{ required: true, message: '预留邮箱不能为空！' }]
+									rules: [{ required: true, message: '预留邮箱不能为空！' },{type:'email',message:'请填写正确的email地址！'}]
 								}
 							]"
 						/>
@@ -24,6 +24,22 @@
 	</div>
 </template>
 
-<script></script>
+<script>
+	export default {
+		beforeCreate() {
+			this.form = this.$form.createForm(this, { name: 'normal_login' });
+		},
+		methods: {
+			handleSubmit(e) {
+				e.preventDefault();
+				this.form.validateFields((err, values) => {
+					if (!err) {
+						console.log('Received values of form: ', values);
+					}
+				});
+			}
+		}
+	};
+</script>
 
 <style></style>
