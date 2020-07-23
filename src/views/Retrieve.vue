@@ -10,7 +10,7 @@
 						</span>
 						<a-input
 							v-decorator="[
-								'username',
+								'email',
 								{
 									rules: [{ required: true, message: '预留邮箱不能为空！' },{type:'email',message:'请填写正确的email地址！'}]
 								}
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+	import {RetrieveAPI} from "@/api/user.js"
 	export default {
 		beforeCreate() {
 			this.form = this.$form.createForm(this, { name: 'normal_login' });
@@ -35,6 +36,7 @@
 				this.form.validateFields((err, values) => {
 					if (!err) {
 						console.log('Received values of form: ', values);
+						RetrieveAPI(values);
 					}
 				});
 			}

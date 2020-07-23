@@ -3,7 +3,7 @@
 		<a-col :sm="{ span: 10, offset: 7 }" :xs="{ span: 20, offset: 2 }">
 			<a-form id="components-form-demo-normal-login" :form="form" class="login-form" @submit="handleSubmit">
 				<a-form-item>
-					<a-input v-decorator="['userName', { rules: [{ required: true, message: '请输入您的用户名或邮箱!' }] }]" placeholder="用户名/邮箱">
+					<a-input v-decorator="['username', { rules: [{ required: true, message: '请输入您的用户名或邮箱!' }] }]" placeholder="用户名/邮箱">
 						<a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
 					</a-input>
 				</a-form-item>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { LoginAPI } from '@/api/user.js';
 export default {
 	beforeCreate() {
 		this.form = this.$form.createForm(this, { name: 'normal_login' });
@@ -45,6 +46,13 @@ export default {
 			this.form.validateFields((err, values) => {
 				if (!err) {
 					console.log('Received values of form: ', values);
+					LoginAPI(values)
+						.then(res => {
+							console.log('返回信息', res);
+						})
+						.catch(info => {
+							console.log('异常信息', info);
+						});
 				}
 			});
 		}
