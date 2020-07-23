@@ -1,9 +1,11 @@
 <template>
 	<a-layout id="components-layout-demo-fixed">
 		<a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-			<div class="logo" />
+			<div class="logo" >酷C发卡网</div>
 			<a-menu theme="dark" mode="horizontal" :default-selected-keys="['2']" :style="{ lineHeight: '64px' }">
-				
+				<a-menu-item key="4">
+					<router-link to="/">首页</router-link>
+				</a-menu-item>
 				<a-menu-item key="1">
 					<router-link to="/register">注册</router-link>
 				</a-menu-item>

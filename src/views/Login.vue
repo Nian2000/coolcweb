@@ -36,6 +36,8 @@
 
 <script>
 import { LoginAPI } from '@/api/user.js';
+import router from '../router';
+
 export default {
 	beforeCreate() {
 		this.form = this.$form.createForm(this, { name: 'normal_login' });
@@ -48,7 +50,13 @@ export default {
 					console.log('Received values of form: ', values);
 					LoginAPI(values)
 						.then(res => {
-							console.log('返回信息', res);
+							this.$notification.open({
+								message: '登录成功',
+								description: 'Hello，好久不见，今天也要有个好心情！',
+								icon: <a-icon type="smile" style="color: #108ee9" />
+							});
+							localStorage.setItem('token', res.obj.token); //设置token
+							router.push('/');
 						})
 						.catch(info => {
 							console.log('异常信息', info);
