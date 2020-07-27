@@ -1,5 +1,5 @@
 <template>
-	<a-row>
+	<a-row style="margin-top: 35px;">
 		<a-col :sm="{ span: 10, offset: 7 }" :xs="{ span: 20, offset: 2 }">
 			<a-form id="components-form-demo-normal-login" :form="form" class="login-form" @submit="handleSubmit">
 				<a-form-item>
@@ -68,6 +68,7 @@ export default {
 };
 </script>
 <style>
+
 #components-form-demo-normal-login .login-form {
 	max-width: 300px;
 }

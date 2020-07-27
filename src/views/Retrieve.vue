@@ -1,5 +1,5 @@
 <template>
-	<div id="components-form-demo-vuex">
+	<div id="components-form-demo-vuex"  style="margin-top: 35px;">
 		<a-row>
 			<a-col :sm="{ span: 10, offset: 7 }" :xs="{ span: 20, offset: 2 }">
 				<a-form :form="form" @submit="handleSubmit">

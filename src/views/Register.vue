@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<a-row>
+
+		<a-row  style="margin-top: 35px;">
 			<a-col :sm="{ span: 10, offset: 7 }" :xs="{ span: 20, offset: 2 }">
 				<a-form :form="form" @submit="handleSubmit">
 					<a-form-item>
@@ -86,7 +86,7 @@
 				</a-form>
 			</a-col>
 		</a-row>
-	</div>
+	
 </template>
 
 <script>
